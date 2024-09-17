@@ -18,12 +18,16 @@ app.use(
   session({
     name: "my-session",
     secret: "ewVsqWOyeb",
-    resave: false,
     saveUninitialized: true,
+    rolling: true,
+    resave: true,
+    proxy: true,
     cookie: {
-        secure: false, // Secure is Recommeneded, However it requires an HTTPS enabled website (SSL Certificate)
-        maxAge: 864000000 // 10 Days in miliseconds
-    }
+      maxAge: 1000 * 60 * 60 * 24,
+      httpOnly: false, // helps prevent XSS attacks
+      secure: false, // cookies sent only over HTTPS in production
+      sameSite: "None", // or 'Strict', depending on your needs
+    },
   })
 );
 app.use(flash());
