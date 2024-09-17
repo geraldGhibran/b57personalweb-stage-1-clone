@@ -19,13 +19,11 @@ app.use(
     name: "my-session",
     secret: "ewVsqWOyeb",
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     cookie: {
-      maxAge: 1000 * 60 * 60 * 24,
-      httpOnly: false, // helps prevent XSS attacks
-      secure: false, // cookies sent only over HTTPS in production
-      sameSite: 'Lax', // or 'Strict', depending on your needs
-    },
+        secure: false, // Secure is Recommeneded, However it requires an HTTPS enabled website (SSL Certificate)
+        maxAge: 864000000 // 10 Days in miliseconds
+    }
   })
 );
 app.use(flash());
